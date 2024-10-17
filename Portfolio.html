@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Web Page - Dark Mode</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #03a9f4;
+            color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        header h1:hover {
+            transform: scale(1.1);
+        }
+
+        section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #393939;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease-in-out;
+        }
+
+        section:hover {
+            background: #252525;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-family: 'Dosis', sans-serif;
+        }
+
+        section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #cccccc;
+            font-family: 'Dosis', sans-serif;
+        }
+
+        footer {
+            margin-top: 20px;
+            background: #03a9f4;
+            color: #ffffff;
+            padding: 15px 0;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            color: #e91e63;
+        }
+
+        /* Add subtle animations */
+        * {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Project - Dark Mode</h1>
+    </header>
+
+    <section class="container">
+        <h2>Personal Information</h2>
+        <p>Name: Malek Alaa</p>
+        <p>Hobbies: Programming, Video Games</p>
+        <p>Programming Language: HTML , C++ , Python , JS</p>
+    </section>
+
+    <br>
+    <br>
+
+    <section class="container">
+        <h2>My Projects</h2>
+        <div class="projects-container" style="display: flex; gap: 20px; justify-content: center;">
+            <div class="project-card" style="position: relative; width: 200px; height: 150px; overflow: hidden; border-radius: 10px;">
+                <img src="Anime web.PNG" alt="Anime List Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                <a href="https://lucalilo10.github.io/My-Anime-List/anime%20on%20plan.html"
+                   style="position: absolute; bottom: 0; left: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.5); font-size: 1.2em; padding: 5px; text-decoration: none; font-family: 'Dosis', sans-serif;">
+                   Anime List
+                </a>
+            </div>
+
+            <div class="project-card" style="position: relative; width: 200px; height: 150px; overflow: hidden; border-radius: 10px;">
+                <img src="6A Web.PNG" alt="6A Preview" style="width: 100%; height: 100%; object-fit: cover;">
+                <a href="https://lucalilo10.github.io/6A_2024/1-Main.Html"
+                   style="position: absolute; bottom: 0; left: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.5); font-size: 1.2em; padding: 5px; text-decoration: none; font-family: 'Dosis', sans-serif;">
+                   6A Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>Copyright © 2024 All rights reserved.</p>
+    </footer>
+</body>
+</html>
