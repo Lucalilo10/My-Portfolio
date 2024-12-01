@@ -88,6 +88,33 @@
             color: #e91e63;
         }
 
+        .project-card {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-card a {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 1.2em;
+            padding: 5px;
+            text-decoration: none;
+            font-family: 'Dosis', sans-serif;
+        }
+
         /* Add subtle animations */
         * {
             transition: all 0.3s ease;
@@ -103,36 +130,51 @@
         <h2>Personal Information</h2>
         <p>Name: Malek Alaa</p>
         <p>Hobbies: Programming, Video Games</p>
-        <p>Programming Language: HTML , C++ , Python , JS</p>
+        <p>Programming Language: HTML, C++, Python, JS</p>
     </section>
 
-    <br>
-    <br>
+    <br><br>
 
     <section class="container">
         <h2>My Projects</h2>
-        <div class="projects-container" style="display: flex; gap: 20px; justify-content: center;">
-            <div class="project-card" style="position: relative; width: 200px; height: 150px; overflow: hidden; border-radius: 10px;">
-                <img src="Anime web.PNG" alt="Anime List Preview" style="width: 100%; height: 100%; object-fit: cover;">
-                <a href="https://lucalilo10.github.io/My-Anime-List/anime%20on%20plan.html"
-                   style="position: absolute; bottom: 0; left: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.5); font-size: 1.2em; padding: 5px; text-decoration: none; font-family: 'Dosis', sans-serif;">
-                   Anime List
-                </a>
+        <div id="projects-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <div class="project-card" data-title="Anime List">
+                <img src="Anime web.PNG" alt="Anime List Preview">
+                <a href="https://lucalilo10.github.io/My-Anime-List/anime%20on%20plan.html">Anime List</a>
             </div>
 
-            <div class="project-card" style="position: relative; width: 200px; height: 150px; overflow: hidden; border-radius: 10px;">
-                <img src="6A web.PNG" alt="6A Preview" style="width: 100%; height: 100%; object-fit: cover;">
-                <a href="https://lucalilo10.github.io/6A_2024/1-Main.Html"
-                   style="position: absolute; bottom: 0; left: 0; right: 0; color: white; background-color: rgba(0, 0, 0, 0.5); font-size: 1.2em; padding: 5px; text-decoration: none; font-family: 'Dosis', sans-serif;">
-                   6A Project
-                </a>
+            <div class="project-card" data-title="Link Collector">
+                <img src="Link Collector.png" alt="Link Collector">
+                <a href="https://lucalilo10.github.io/Link-Collector/Link%20Collector.html">Link Collector</a>
+            </div>
+
+            <div class="project-card" data-title="6A Project">
+                <img src="6A web.PNG" alt="6A Preview">
+                <a href="https://lucalilo10.github.io/6A_2024/1-Main.Html">6A Project</a>
+            </div>
+
+            <div class="project-card" data-title="Secret Code">
+                <img src="Secret Code.png" alt="Secret code">
+                <a href="https://lucalilo10.github.io/Secret-Code/Franco%20arabic.html">Secret Code</a>
             </div>
         </div>
     </section>
 
-
     <footer>
         <p>Copyright © 2024 All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById('projects-container');
+            const projects = Array.from(container.getElementsByClassName('project-card'));
+
+            // Sort the project cards alphabetically based on the data-title attribute
+            projects.sort((a, b) => a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')));
+
+            // Append the sorted projects back to the container
+            projects.forEach(project => container.appendChild(project));
+        });
+    </script>
 </body>
 </html>
