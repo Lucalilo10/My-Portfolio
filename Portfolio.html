@@ -3,177 +3,651 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Malek's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;400;600;700&display=swap');
+
+        :root {
+            --primary: #03a9f4;
+            --secondary: #bb86fc;
+            --accent: #e91e63;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #e0e0e0;
+            --lighter: #ffffff;
+            --gray: #393939;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            text-align: center;
-            margin: 0;
-            padding: 0;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
-            width: 80%;
+            width: 85%;
+            max-width: 1200px;
             margin: auto;
-            overflow: hidden;
             padding: 20px;
         }
 
         header {
-            background-color: #03a9f4;
-            color: #ffffff;
-            padding: 20px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, var(--primary), #0288d1);
+            color: var(--lighter);
+            padding: 30px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
-            letter-spacing: 2px;
-            transition: transform 0.3s ease-in-out;
+            font-size: 2.8em;
+            letter-spacing: 3px;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         header h1:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-top: 10px;
+            font-family: 'Dosis', sans-serif;
+            position: relative;
         }
 
         section {
-            margin: 20px 0;
-            padding: 20px;
-            background: #393939;
+            margin: 30px 0;
+            padding: 30px;
+            background: var(--gray);
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-            transition: background 0.3s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 65%, rgba(3, 169, 244, 0.1) 100%);
+            z-index: -1;
         }
 
         section:hover {
-            background: #252525;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            background: #2d2d2d;
         }
 
         section h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
+            font-size: 2em;
+            margin-bottom: 20px;
             font-family: 'Dosis', sans-serif;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
         }
 
         section p {
             font-size: 1.1em;
-            line-height: 1.6;
             color: #cccccc;
             font-family: 'Dosis', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .info-item h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.2em;
         }
 
         footer {
-            margin-top: 20px;
-            background: #03a9f4;
-            color: #ffffff;
-            padding: 15px 0;
-            font-size: 0.9em;
+            margin-top: 50px;
+            background: linear-gradient(135deg, var(--primary), #0288d1);
+            color: var(--lighter);
+            padding: 25px 0;
+            font-size: 1em;
             letter-spacing: 1px;
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .social-links {
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px) scale(1.2);
         }
 
         a {
-            color: #bb86fc;
+            color: var(--secondary);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease-in-out;
+            position: relative;
         }
 
         a:hover {
-            color: #e91e63;
+            color: var(--accent);
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
         .project-card {
             position: relative;
-            width: 200px;
-            height: 150px;
+            border-radius: 15px;
             overflow: hidden;
-            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            height: 200px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
         .project-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .project-card a {
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            font-size: 1.2em;
-            padding: 5px;
-            text-decoration: none;
-            font-family: 'Dosis', sans-serif;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
 
-        /* Add subtle animations */
-        * {
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .project-title {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+            font-family: 'Dosis', sans-serif;
+            color: var(--lighter);
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
             transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .project-link::after {
+            display: none;
+        }
+
+        .floating-bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background: rgba(3, 169, 244, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid var(--primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+
+        /* Animated cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(3, 169, 244, 0.5);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            mix-blend-mode: screen;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(187, 134, 252, 0.5);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        /* Scroll indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--accent);
+            z-index: 10000;
+            box-shadow: 0 0 10px var(--accent);
         }
     </style>
 </head>
 <body>
+    <!-- Animated cursor elements -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Scroll progress indicator -->
+    <div class="scroll-progress"></div>
+
+    <!-- Floating background bubbles -->
+    <div class="floating-bubbles"></div>
+
     <header>
-        <h1>Welcome to My Portfolio</h1>
+        <div class="container">
+            <h1>Malek Alaa</h1>
+            <p>Developer | Designer | Creative Thinker</p>
+        </div>
     </header>
 
-    <section class="container">
-        <h2>Personal Information</h2>
-        <p>Name: Malek Alaa</p>
-        <p>Hobbies: Programming, Video Games</p>
-        <p>Programming Language: HTML, C++, Python, JS</p>
-    </section>
-
-    <br><br>
-
-    <section class="container">
-        <h2>My Projects</h2>
-        <div id="projects-container" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            <div class="project-card" data-title="Anime List">
-                <img src="Anime web.PNG" alt="Anime List Preview">
-                <a href="https://lucalilo10.github.io/My-Anime-List/anime%20on%20plan.html">Anime List</a>
+    <div class="container">
+        <section id="about">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Get to know the person behind the code</p>
             </div>
 
-            <div class="project-card" data-title="Link Collector">
-                <img src="Link Collector.png" alt="Link Collector">
-                <a href="https://lucalilo10.github.io/Link-Collector/Link%20Collector.html">Link Collector</a>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3><i class="fas fa-user"></i> Personal</h3>
+                    <p><strong>Name:</strong> Malek Alaa</p>
+                    <p><strong>Hobbies:</strong> Programming, Video Games</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-code"></i> Skills</h3>
+                    <div class="skills-container">
+                        <span class="skill">HTML</span>
+                        <span class="skill">CSS</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">C++</span>
+                        <span class="skill">Python</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-lightbulb"></i> Philosophy</h3>
+                    <p>Just Give up</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="section-header">
+                <h2>My Projects</h2>
+                <p>A collection of my creative and technical work</p>
             </div>
 
-            <div class="project-card" data-title="6A Project">
-                <img src="6A web.PNG" alt="6A Preview">
-                <a href="https://lucalilo10.github.io/6A_2024/1-Main.Html">6A Project</a>
-            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-title="Anime List">
+                    <img src="Anime web.PNG" alt="Anime List Preview">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Anime List</h3>
+                        <p>Track and organize your favorite anime</p>
+                        <a href="https://lucalilo10.github.io/My-Anime-List/anime%20on%20plan.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-            <div class="project-card" data-title="Secret Code">
-                <img src="Secret Code.png" alt="Secret code">
-                <a href="https://lucalilo10.github.io/Secret-Code/Franco%20arabic.html">Secret Code</a>
+                <div class="project-card" data-title="Link Collector">
+                    <img src="Link Collector.png" alt="Link Collector">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Link Collector</h3>
+                        <p>Organize and access your favorite links</p>
+                        <a href="https://lucalilo10.github.io/Link-Collector/Link%20Collector.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-title="6A Project">
+                    <img src="6A web.PNG" alt="6A Preview">
+                    <div class="project-overlay">
+                        <h3 class="project-title">6A Project</h3>
+                        <p>Educational web project</p>
+                        <a href="https://lucalilo10.github.io/6A_2024/1-Main.Html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-title="Secret Code">
+                    <img src="Secret Code.png" alt="Secret code">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Secret Code</h3>
+                        <p>Encrypt and decrypt messages</p>
+                        <a href="https://lucalilo10.github.io/Secret-Code/Franco%20arabic.html" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <footer>
-        <p>Copyright © 2024 All rights reserved.</p>
+        <div class="container">
+            <p>Let's create something amazing together</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>Copyright © 2024 Malek Alaa. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById('projects-container');
-            const projects = Array.from(container.getElementsByClassName('project-card'));
+            // Create floating bubbles
+            const bubblesContainer = document.querySelector('.floating-bubbles');
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
 
-            // Sort the project cards alphabetically based on the data-title attribute
-            projects.sort((a, b) => a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')));
+                // Random size between 10 and 100px
+                const size = Math.random() * 90 + 10;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
 
-            // Append the sorted projects back to the container
-            projects.forEach(project => container.appendChild(project));
+                // Random position
+                bubble.style.left = `${Math.random() * 100}%`;
+
+                // Random animation duration between 10 and 30s
+                const duration = Math.random() * 20 + 10;
+                bubble.style.animationDuration = `${duration}s`;
+
+                // Random delay
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+                bubblesContainer.appendChild(bubble);
+            }
+
+            // Custom cursor
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+
+            // Cursor effects on hover
+            const hoverElements = document.querySelectorAll('a, button, .project-card');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursor.style.backgroundColor = 'rgba(233, 30, 99, 0.5)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
+                    cursorFollower.style.borderColor = 'rgba(233, 30, 99, 0.5)';
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.backgroundColor = 'rgba(3, 169, 244, 0.5)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorFollower.style.borderColor = 'rgba(187, 134, 252, 0.5)';
+                });
+            });
+
+            // Scroll progress indicator
+            const scrollProgress = document.querySelector('.scroll-progress');
+            window.addEventListener('scroll', () => {
+                const scrollPx = document.documentElement.scrollTop;
+                const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (scrollPx / winHeightPx) * 100;
+                scrollProgress.style.width = scrolled + '%';
+            });
+
+            // Sort projects alphabetically
+            const projectsContainer = document.querySelector('.projects-grid');
+            const projects = Array.from(projectsContainer.children);
+
+            projects.sort((a, b) => {
+                const titleA = a.getAttribute('data-title').toLowerCase();
+                const titleB = b.getAttribute('data-title').toLowerCase();
+                return titleA.localeCompare(titleB);
+            });
+
+            projects.forEach(project => projectsContainer.appendChild(project));
+
+            // Add smooth scroll to all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animate sections when they come into view
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
         });
     </script>
 </body>
